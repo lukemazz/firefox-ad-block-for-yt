@@ -1,146 +1,84 @@
 # YT Solo (no ads) - Firefox
 
-🎥 Estensione Firefox per aprire YouTube in una finestra dedicata senza pubblicità.
+🎥 Firefox extension to open YouTube in a dedicated ad-free window.
 
-## 📋 Caratteristiche
+## 📋 Features
 
-- **Finestra dedicata**: Apri YouTube in una finestra popup separata
-- **Blocco annunci**: Rimuove automaticamente le pubblicità da YouTube
-- **Skip automatico**: Salta automaticamente gli annunci video quando possibile
-- **Accelerazione annunci**: Velocizza la riproduzione degli annunci non saltabili
-- **Interfaccia pulita**: Nasconde overlay pubblicitari e banner
+- **Dedicated window**: Opens YouTube in a separate popup
+- **Ad blocking**: Automatically removes YouTube ads
+- **Auto-skip**: Skips video ads when possible
+- **Ad acceleration**: Speeds up non-skippable ads
+- **Clean interface**: Hides ad overlays and banners
 
-## 🚀 Installazione
+## 🚀 Installation
 
-### Metodo 1: Installazione temporanea (per test e sviluppo)
+### Method 1: Temporary (for testing)
 
-1. **Scarica l'estensione**
-   ```bash
-   git clone https://github.com/tuousername/yt-solo-firefox.git
-   cd yt-solo-firefox
-   ```
+1. Download: `git clone https://github.com/yourusername/yt-solo-firefox.git`
+2. Open Firefox and navigate to `about:debugging`
+3. Click "This Firefox" → "Load Temporary Add-on..."
+4. Select `manifest.json` from the extension folder
 
-2. **Apri Firefox e vai alla pagina dei componenti aggiuntivi**
-   - Digita `about:debugging` nella barra degli indirizzi
-   - Oppure: Menu ☰ → Altri strumenti → Strumenti di sviluppo del browser
+> ⚠️ Extension removed when Firefox closes.
 
-3. **Carica l'estensione**
-   - Clicca su "Questo Firefox" nella barra laterale
-   - Clicca su "Carica componente aggiuntivo temporaneo..."
-   - Naviga nella cartella dell'estensione
-   - Seleziona il file `manifest.json`
+### Method 2: Permanent (unsigned)
 
-4. **L'estensione è installata!**
-   - Vedrai l'icona dell'estensione nella barra degli strumenti
-   - L'estensione rimarrà attiva fino alla chiusura di Firefox
+1. Go to `about:config` and set `xpinstall.signatures.required` to `false`
+2. Compress extension files to ZIP, rename to `.xpi`
+3. Drag `.xpi` into Firefox and click "Add"
 
-> ⚠️ **Nota**: Con questo metodo, l'estensione viene rimossa ogni volta che chiudi Firefox e dovrai ricaricarla manualmente.
+> ⚠️ Warning: Disabling signature verification reduces browser security.
 
-### Metodo 2: Installazione permanente (non firmata)
+### Method 3: Developer/Nightly Edition
 
-Per mantenere l'estensione anche dopo il riavvio di Firefox, devi modificare una configurazione:
+Use Method 2 without modifying `about:config`.
 
-1. **Abilita estensioni non firmate**
-   - Digita `about:config` nella barra degli indirizzi
-   - Accetta l'avviso se richiesto
-   - Cerca `xpinstall.signatures.required`
-   - Cambia il valore a `false` (doppio click)
+## 🎯 Usage
 
-2. **Crea un file .xpi**
-   - Comprimi tutti i file dell'estensione in un archivio ZIP
-   - Rinomina il file da `.zip` a `.xpi`
-   - Assicurati che `manifest.json` sia nella root del file .xpi
+Click the extension icon to open YouTube in an ad-free popup window. Ads are automatically blocked, skipped, or accelerated.
 
-3. **Installa il file .xpi**
-   - Trascina il file `.xpi` in una finestra di Firefox
-   - Clicca su "Aggiungi" quando richiesto
-
-> ⚠️ **Attenzione**: Disabilitare la verifica delle firme riduce la sicurezza del browser. Usa questo metodo solo se capisci i rischi.
-
-### Metodo 3: Versione Developer Edition o Nightly
-
-Se usi **Firefox Developer Edition** o **Firefox Nightly**, puoi installare estensioni non firmate senza modificare `about:config`:
-
-1. Segui gli stessi passaggi del Metodo 2
-2. Non è necessario modificare `xpinstall.signatures.required`
-
-## 🎯 Utilizzo
-
-1. **Apri YouTube senza pubblicità**
-   - Clicca sull'icona dell'estensione nella barra degli strumenti
-   - Si aprirà una finestra popup dedicata con YouTube
-
-2. **Naviga normalmente**
-   - Le pubblicità verranno automaticamente bloccate
-   - I video ads verranno saltati o velocizzati
-   - Gli overlay pubblicitari verranno nascosti
-
-## 🔧 Struttura del progetto
+## 🔧 Project Structure
 
 ```
 yt-solo-firefox/
-├── manifest.json      # Configurazione dell'estensione
-├── background.js      # Script di background per blocco richieste
-├── content.js         # Script per manipolazione DOM
-└── README.md         # Questa documentazione
+├── manifest.json    # Extension config
+├── background.js    # Request blocking
+├── content.js       # DOM manipulation
+└── README.md
 ```
 
-## 📝 Come funziona
+## 📝 How It Works
 
-### Background Script
-- Blocca le richieste a domini pubblicitari noti (doubleclick.net, googlesyndication.com, ecc.)
-- Apre YouTube in una finestra popup dedicata al click dell'icona
+**Background Script**: Blocks requests to ad domains (doubleclick.net, googlesyndication.com, etc.) and opens popup window.
 
-### Content Script
-- Monitora la pagina per rilevare annunci video
-- Accelera la riproduzione degli annunci a 16x
-- Clicca automaticamente i pulsanti "Salta annuncio"
-- Nasconde overlay e banner pubblicitari
-- Ripristina le impostazioni originali dopo l'annuncio
+**Content Script**: Accelerates ads to 16x speed, auto-clicks "Skip Ad" buttons, hides overlays and banners.
 
-## ⚖️ Note legali
+## ⚖️ Legal Notice
 
-Questa estensione è sviluppata per scopi educativi e di ricerca. L'uso di ad-blocker è legale nella maggior parte delle giurisdizioni, inclusa l'Italia. Tuttavia:
+Developed for educational purposes. Ad-blocking is legal in most jurisdictions. Users are responsible for their use. YouTube may limit access if ad-blocking is detected.
 
-- L'estensione modifica l'esperienza utente solo sul dispositivo locale
-- Non ridistribuisce o modifica contenuti di terze parti
-- Gli utenti sono responsabili dell'uso che ne fanno
-- YouTube potrebbe limitare l'accesso ai contenuti se rileva l'uso di ad-blocker
+## 🐛 Troubleshooting
 
-## 🐛 Risoluzione problemi
+- **Extension not appearing**: Check all files are present, verify `manifest.json` selection
+- **Ads not blocked**: Reload page, check extension is active in `about:addons`
+- **Extension disappears**: Normal for temporary installation, use Method 2/3 for permanence
 
-### L'estensione non appare dopo l'installazione
-- Verifica che tutti i file siano presenti nella cartella
-- Controlla la console di Firefox per errori (F12 → Console)
-- Assicurati di aver selezionato il file `manifest.json` corretto
+## 🤝 Contributing
 
-### Gli annunci non vengono bloccati
-- Ricarica la pagina di YouTube
-- Verifica che l'estensione sia attiva in `about:addons`
-- Controlla i permessi dell'estensione
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/new-feature`
+3. Commit: `git commit -m 'Add new feature'`
+4. Push: `git push origin feature/new-feature`
+5. Open Pull Request
 
-### L'estensione scompare dopo il riavvio
-- Questo è normale con l'installazione temporanea
-- Usa il Metodo 2 o 3 per un'installazione permanente
+## 📄 License
 
-## 🤝 Contribuire
-
-I contributi sono benvenuti! 
-
-1. Fai un fork del repository
-2. Crea un branch per la tua feature (`git checkout -b feature/nuova-funzionalita`)
-3. Committa le modifiche (`git commit -m 'Aggiunge nuova funzionalità'`)
-4. Pusha il branch (`git push origin feature/nuova-funzionalita`)
-5. Apri una Pull Request
-
-## 📄 Licenza
-
-Questo progetto è distribuito sotto licenza MIT. Vedi il file `LICENSE` per maggiori dettagli.
+MIT License. See `LICENSE` file.
 
 ## ⚠️ Disclaimer
 
-Questo software è fornito "così com'è", senza garanzie di alcun tipo. L'autore non è responsabile per eventuali danni derivanti dall'uso di questa estensione. L'utilizzo è a proprio rischio.
+Provided "as is" without warranty. Author not responsible for damages. Use at your own risk.
 
 ---
 
-**Nota**: YouTube è un marchio registrato di Google LLC. Questa estensione non è affiliata, approvata o sponsorizzata da Google.
+YouTube is a registered trademark of Google LLC. Not affiliated with or endorsed by Google.
