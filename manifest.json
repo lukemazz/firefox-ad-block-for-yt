@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+  "name": "YT Solo (no ads) - Firefox",
+  "version": "1.0.0",
+  "description": "Finestra dedicata a YouTube con blocco annunci.",
+  "browser_action": {
+    "default_title": "Apri YT senza annunci"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.youtube.com/*",
+        "*://youtube.com/*",
+        "*://m.youtube.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "windows",
+    "webRequest",
+    "webRequestBlocking",
+    "*://www.youtube.com/*",
+    "*://youtube.com/*",
+    "*://m.youtube.com/*",
+    "*://i.ytimg.com/*",
+    "*://*.googlevideo.com/*",
+    "*://*.doubleclick.net/*",
+    "*://*.googlesyndication.com/*",
+    "*://*.googleadservices.com/*",
+    "*://*.googletagservices.com/*",
+    "*://*.gvt1.com/*",
+    "*://*.gvt2.com/*"
+  ]
+}
